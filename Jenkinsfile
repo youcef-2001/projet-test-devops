@@ -16,7 +16,8 @@ pipeline {
         stage('build image docker') {
             steps {
               script {
-                  sh 'docker buildx -t mynginx-github .'
+                  sh 'cd projet-test-devops'
+                  sh 'docker build -t mynginx-github .'
                   sh 'docker tag mynginx-github local-repo:mynginx-github'
                   
               }
