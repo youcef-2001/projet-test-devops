@@ -16,8 +16,7 @@ pipeline {
         stage('build image docker') {
             steps {
               script {
-                  sh 'docker image rm *'
-                  sh 'docker build -t mynginx-github .'
+                  sh 'docker buildx -t mynginx-github .'
                   sh 'docker tag mynginx-github local-repo:mynginx-github'
                   
               }
