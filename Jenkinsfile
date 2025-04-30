@@ -18,7 +18,7 @@ pipeline {
             steps {
                 script {
                     sh 'docker build -t myimage_nginx .'
-                    sh 'docker tag myimage_nginx youyou:myimage_nginx'
+                    sh 'docker tag myimage_nginx myimage_nginx:youyou'
                 }
             }
         }
