@@ -17,7 +17,7 @@ pipeline {
             steps {
               script {
                   sh 'cd projet-test-devops'
-                  sh 'docker build -t mynginx-github .'
+                  sh 'docker buildx build -t mynginx-github .'
                   sh 'docker tag mynginx-github local-repo:mynginx-github'
                   
               }
