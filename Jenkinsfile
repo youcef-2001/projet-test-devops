@@ -22,7 +22,7 @@ pipeline {
         stage('Deployment app') {
             steps {
                script {
-                   sh 'docker image rm mynginx:youyou'
+                   sh 'docker image rm myimage_nginx:youyou'
                    sh 'docker stop  monapp'
                    sh 'docker rm -f $(docker ps -a)'
                    sh 'docker run -d --name monapp --hostname monapp -p 8089:80 myimage_nginx'
