@@ -23,7 +23,7 @@ pipeline {
             steps {
                script {
                    sh 'docker image rm mynginx'
-                   sh 'docker stop  $(docker ps -a)'
+                   sh 'docker stop  monapp'
                    sh 'docker rm -f $(docker ps -a)'
                    sh 'docker run -d --name monapp --hostname monapp -p 8089:80 myimage_nginx'
                    sh'docker exec -ti monapp '
