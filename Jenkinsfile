@@ -26,8 +26,7 @@ pipeline {
         stage('Deploy App') {
             steps {
                 script {
-                    // Supprimer l'ancienne image si elle existe
-                    sh 'docker image rm -f myimage_nginx || true'
+                  
 
                     // Arrêter le conteneur s'il est en cours d'exécution
                     sh 'docker stop monapp || true'
@@ -37,6 +36,8 @@ pipeline {
 
                     // Lancer le nouveau conteneur
                     sh 'docker run -d --name monapp --hostname monapp -p 8089:80 myimage_nginx:youyou'
+                      // Supprimer l'ancienne image si elle existe
+                    sh 'docker image rm -f myimage_nginx || true'
                 }
             }
         }
