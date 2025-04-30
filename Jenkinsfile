@@ -29,10 +29,10 @@ pipeline {
                   
 
                     // Arrêter le conteneur s'il est en cours d'exécution
-                    sh 'docker stop monapp || true'
+                    sh 'docker stop monapp '
 
                     // Supprimer le conteneur s'il existe
-                    sh 'docker rm monapp || true'
+                    sh 'docker rm monapp '
 
                     // Lancer le nouveau conteneur
                     sh 'docker run -d --name monapp --hostname monapp -p 8089:80 myimage_nginx:youyou'
