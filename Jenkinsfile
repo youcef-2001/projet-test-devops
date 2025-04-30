@@ -38,6 +38,7 @@ pipeline {
                     sh 'docker run -d --name monapp --hostname monapp -p 8089:80 myimage_nginx:youyou'
                       // Supprimer l'ancienne image si elle existe
                     sh 'docker image rm -f myimage_nginx || true'
+                    sh 'docker exec monapp ifconfig'
                 }
             }
         }
