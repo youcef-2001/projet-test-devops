@@ -1,40 +1,33 @@
 pipeline {
     agent any
-
     stages {
-        stage('clean workpace') {
+        stage('Clean Workpace') {
             steps {
                 deleteDir()
             }
         }
         stage('checkout SCM') {
             steps {
-              sh 'git clone https://github.com/youcef-2001/projet-test-devops.git'
+                git branch: 'main', credentialsId: 'id-jenkins-github', url: 'https://github.com/youcef-2001/projet-test-devops.git'
             }
         }
-
-        stage('build image docker') {
+        stage('Build image') {
             steps {
               script {
-                  sh 'cd projet-test-devops'
-                  sh 'docker buildx build -t mynginx-github .'
-                  sh 'docker tag mynginx-github local-repo:mynginx-github'
-                  
+                  sh 'docker build -t myimage_nginx .'
+                  sh 'docker tag myimage_nginx youyou:myimage_nginx'
               }
             }
         }
-
-
-        stage('deploiement application') {
+        stage('Deployment app') {
             steps {
-              script {
-                    sh 'docker image rm nginx'
-                    sh 'docker stop myapp'
-                    sh 'docker rm myapp'
-                  
-                    sh 'docker rm -f $(docker ps -a)'
-                    sh 'docker run -d --name myapp --hostname myapp -p 8089:80  mynginx-github'
-              }
+               script {
+                   sh 'docker image rm mynginx'
+                   sh 'docker stop  $(docker ps -a)'
+                   sh 'docker rm -f $(docker ps -a)'
+                   sh 'docker run -d --name monapp --hostname monapp -p 8089:80 myimage_nginx'
+                   sh'docker exec -ti monapp '
+               }
             }
         }
     }
