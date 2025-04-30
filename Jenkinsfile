@@ -36,7 +36,7 @@ pipeline {
                     sh 'docker rm monapp || true'
 
                     // Lancer le nouveau conteneur
-                    sh 'docker run -d --name monapp --hostname monapp -p 8089:80 myimage_nginx'
+                    sh 'docker run -d --name monapp --hostname monapp -p 8089:80 myimage_nginx:youyou'
                 }
             }
         }
